@@ -262,7 +262,7 @@ end
 
 
 
-
+pause(3)
 
 
 
@@ -280,7 +280,7 @@ addpath('functions')
 
 % ---------
 % Janela apenas para mostrar os resultados obtidos nas alíneas
-hF=figure; set(hF,...
+hP=figure; set(hP,...
                'color',[1 1 1],...
                'Position', [675 20 675 675],...
                'Name','Ex.Extra')
@@ -690,7 +690,7 @@ clear_links_jac(thetas,L,h);
 
 
 
-hG=figure; set(hG,...
+hL=figure; set(hL,...
                'color',[1 1 1],...
                'Position', [0 20 675 675])
            
