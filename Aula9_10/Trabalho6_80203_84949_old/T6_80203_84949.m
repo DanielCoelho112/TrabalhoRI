@@ -120,13 +120,13 @@ else
 end
 
 
-pause(2)
-
-%% Ex.Extra2
-close all
+pause(3)
+    
+%% Ex2-Extra
 clear
 clc
 addpath('functions')
+
 
 % ---------
 % Janela apenas para mostrar os resultados obtidos nas alíneas
@@ -134,157 +134,7 @@ hF=figure; set(hF,...
                'color',[1 1 1],...
                'Position', [0 20 675 675],...
                'Name','Ex1')
-title('Simulação diferencial de um manipulador 3D de 2 elos')
-xlabel('X'); ylabel('Y'); zlabel('Z')
-axis([-10 10 -10 10 -10 10])
-view(3)
-
-
-hold on; grid on
-
-
-%Definição dos comprimentos dos elos
-L1=3;
-L2=3;
-L=[L1,L2];
-
-% variavel que irá armazenar a informaçoes dos plots
-h=[];
-
-%juntas correspondentes á posição inicial do manipulador
-thetas=[pi/2,0];
-
-%representação da posição inicial do manipulador
-[~,h]=draw_links_jacExtra(thetas,L,h);
-
-r = 3;
-ni = 400;
-
-t=linspace(0,2*pi,ni);
-for i=1:ni
-    %vetor que tem a variação do deslocamento do ponto
-    dr=[-r*sin(t(i))
-        r*cos(t(i))
-        0];
-
-     %Jacobiana inversa correspondente aos angulos atuais
-     J1=inv_jacExtra(thetas,L);
-
-     %determinação da variaçao dos angulos das juntas para termos a
-     %variação do ponto pretendida
-     dthetas=J1*dr;
-
-     %calculo dos novos angulos
-     thetas=[thetas(1)+dthetas(1) thetas(2)+dthetas(2)];
-
-     %representação do manipulador na nova posição
-     [Ponto,h]=draw_links_jacExtra(thetas,L,h);
-
-     %representação dos pontos por onde o manupulador passa
-     plot3(Ponto(1),Ponto(2),Ponto(3),'ro','MarkerSize',1)
-
-     pause(0.005)
-
-end
-
-hold on
-
-%juntas correspondentes á posição inicial do manipulador
-thetas=[pi/2,0];
-r = 3;
-ni = 400;
-
-t=linspace(0,2*pi,ni);
-for i=1:ni
-    %vetor que tem a variação do deslocamento do ponto
-    dr=[r*sin(t(i))
-        r*cos(t(i))
-        -r*sin(t(i))];
-
-     %Jacobiana inversa correspondente aos angulos atuais
-     J1=inv_jacExtra(thetas,L);
-
-     %determinação da variaçao dos angulos das juntas para termos a
-     %variação do ponto pretendida
-     
-     dthetas=J1*dr;
-
-     %calculo dos novos angulos
-     thetas=[thetas(1)+dthetas(1) thetas(2)+dthetas(2)];
-
-     %representação do manipulador na nova posição
-     [Ponto,h]=draw_links_jacExtra(thetas,L,h);
-
-     %representação dos pontos por onde o manupulador passa
-     plot3(Ponto(1),Ponto(2),Ponto(3),'bo','MarkerSize',1)
-
-     pause(0.005)
-
-end
-
-
-hold on
-
-%juntas correspondentes á posição inicial do manipulador
-thetas=[pi/2,0];
-r = 3;
-ni = 400;
-
-t=linspace(0,2*pi,ni);
-for i=1:ni
-    %vetor que tem a variação do deslocamento do ponto
-    dr=[-r*sin(t(i))
-        r*cos(t(i))
-        -r*sin(t(i))];
-
-     %Jacobiana inversa correspondente aos angulos atuais
-     J1=inv_jacExtra(thetas,L);
-
-     %determinação da variaçao dos angulos das juntas para termos a
-     %variação do ponto pretendida
-     
-     dthetas=J1*dr;
-
-     %calculo dos novos angulos
-     thetas=[thetas(1)+dthetas(1) thetas(2)+dthetas(2)];
-
-     %representação do manipulador na nova posição
-     [Ponto,h]=draw_links_jacExtra(thetas,L,h);
-
-     %representação dos pontos por onde o manupulador passa
-     plot3(Ponto(1),Ponto(2),Ponto(3),'bo','MarkerSize',1)
-
-     pause(0.005)
-
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% Ex2-Extra 2.2
-clear
-clc
-addpath('functions')
-
-
-% ---------
-% Janela apenas para mostrar os resultados obtidos nas alíneas
-hF=figure; set(hF,...
-               'color',[1 1 1],...
-               'Position', [675 20 675 675],...
-               'Name','Ex.Extra')
-title('Guess the logo')
+title('Ex Extra')
 axis([-8 8 -8 8])
 
 
@@ -610,12 +460,12 @@ for i=1:290
      %representação dos pontos por onde o manupulador passa
      plot(Ponto(1),Ponto(2),'bo','MarkerSize',2)
   
-    pause(0.0001)
+    pause(0.001)
      
 end
 
 
-for i=1:21
+for i=1:206
     
     
     
@@ -623,8 +473,8 @@ for i=1:21
     %dy=rcos(t)dt
      
     %vetor que tem a variação do deslocamento do ponto
-    dr=[-0.09
-        0.066];
+    dr=[-0.009
+        0.0066];
        
       %Jacobiana inversa correspondente aos angulos atuais
      J1=inv_jac(thetas,L);
@@ -657,7 +507,7 @@ for i=1:35
     %dy=rcos(t)dt
      
     %vetor que tem a variação do deslocamento do ponto
-    dr=[0.011
+    dr=[0.01
         0.02];
        
       %Jacobiana inversa correspondente aos angulos atuais
@@ -692,9 +542,7 @@ clear_links_jac(thetas,L,h);
 
 hG=figure; set(hG,...
                'color',[1 1 1],...
-               'Position', [0 20 675 675])
-           
-           title('Google')
+               'Position', [675 20 675 675])
 
            
            axes('Color','none','XColor','none')
@@ -715,4 +563,11 @@ surf(xImage,yImage,zImage,...    % Plot the surface
 camroll(90) 
 set(gca,'XTick',[], 'YTick', [])
 
-pause(2)
+
+
+
+pause(3)
+
+
+
+    
